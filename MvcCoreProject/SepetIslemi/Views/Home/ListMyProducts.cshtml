@@ -1,0 +1,31 @@
+﻿
+@model SepetIslemi.Models.ViewModels.ListProductsViewModel
+
+@{
+    ViewBag.Title = "ListMyProducts";
+}
+
+<h2>ListMyProducts</h2>
+<hr />
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Category Name</th>
+            <th>Unit Price</th>
+            <th><a asp-action="ListMyCartItems" asp-controller="Home" class="btn btn-default">Go Cart</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@(item.CategoryId == null ? "NO Category":item.Category.CategoryName)</td>
+                <td>@item.UnitPrice</td>
+                <td><a asp-action="AddMyCart" asp-controller="Home" asp-route-id="@item.ProductID" class="btn btn-primary">Add Cart</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,41 @@
+﻿
+@model SepetIslemi.Models.ViewModels.ListCartItemsViewModel
+
+@{
+    ViewBag.Title = "ListMyCartItems";
+}
+
+<h2>ListMyCartItems</h2>
+<hr />
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Price</th>
+            <th colspan="2">Sub Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Amount</td>
+                <td>@item.Price.ToString("C2")</td>
+                <td>@item.SubPrice.ToString("C2")</td>
+                <td>
+                    <a asp-action="DeleteMyCart" asp-controller="Home" asp-route-id="@item.ID" class="btn btn-xs btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td><h1>Total Price</h1></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><h1>@Model.TotalPrice.ToString("C2")</h1></td>
+        </tr>
+    </tbody>
+</table>
